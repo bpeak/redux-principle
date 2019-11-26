@@ -10,9 +10,6 @@ const LOGIN = 'auth/LOGIN';
 const LOGOUT = 'auth/LOGOUT';
 
 const loggerMiddleware = ({ getState, dispatch }) => next => action => {
-  // console.log('ZZZ', dispatch);
-  // console.log('TTT', next);
-
   // 현재 스토어 상태값 기록
   console.log('[ 현재상태 ] : ', getState());
   // 액션 기록
@@ -24,26 +21,6 @@ const loggerMiddleware = ({ getState, dispatch }) => next => action => {
 
   // 액션 처리 후의 스토어 상태 기록
   console.log('[ 다음상태 ]', getState());
-  console.log('\n'); // 기록 구분을 위한 비어있는 줄 프린트
-
-  // return result; // 여기서 반환하는 값은 store.dispatch(ACTION_TYPE) 했을때의 결과로 설정됩니다
-};
-
-const loggerMiddleware2 = ({ getState, dispatch }) => next => action => {
-  // console.log('ZZZ', dispatch);
-  // console.log('TTT', next);
-
-  // 현재 스토어 상태값 기록
-  console.log('[ 현재상태222 ] : ', getState());
-  // 액션 기록
-  console.log('[ 액션222 ] : ', action);
-
-  // 액션을 다음 미들웨어, 혹은 리듀서로 넘김
-  next(action);
-  // const result = next(action);
-
-  // 액션 처리 후의 스토어 상태 기록
-  console.log('[ 다음상태222 ]', getState());
   console.log('\n'); // 기록 구분을 위한 비어있는 줄 프린트
 
   // return result; // 여기서 반환하는 값은 store.dispatch(ACTION_TYPE) 했을때의 결과로 설정됩니다
@@ -65,7 +42,9 @@ const reducer = (state = initialState, action) => {
         name: null,
       };
     default:
-      return { ...state };
+      return {
+        ...state,
+      };
   }
 };
 
